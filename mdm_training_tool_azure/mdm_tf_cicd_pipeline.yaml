@@ -1,8 +1,10 @@
 name: $(TeamProject)_$(Build.DefinitionName)_$(SourceBranchName)_CICD_$(Date:yyyyMMdd)$(Rev:.r)
 
+# when you want to merge to main, this pipeline triggers
 trigger:
   - main
 
+# specifying tf version used
 parameters:
   - name: terraformVersion
     displayName: Terraform version
@@ -14,8 +16,9 @@ parameters:
       - 1.8.0
     default: 1.8.0
 
+# .tfstate allows you to track current state of infra, used to identify changes to bring infra to desired state
 variables:
-  - name: Stage.statefile
+  - name: Stage.statefile 
     value: "$(System.TeamProject)_$(Build.DefinitionName)_$(System.StageName)_state.tfstate"
   - name: Dev.servicearm
     value: "ce06-Azure-Terraform-dev"
