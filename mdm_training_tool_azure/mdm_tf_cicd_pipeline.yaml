@@ -72,7 +72,7 @@ stages:
           - task: PublishBuildArtifacts@1
             displayName: "Publish Artifact: drop"
 
-          - template: templates/steps/azdo_git_tag.yaml
+          - template: templates/steps/azdo_git_tag.yaml # Add Access token to Git URL to authenticate via azure
 
   - stage: dev
     dependsOn: build
